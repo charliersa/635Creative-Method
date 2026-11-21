@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>635 創意發想表</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="form">
+    <header class="card head">
+      <h1><span class="num">6·3·5</span>創意發想表</h1>
+      <div class="topic" id="topic">主題：載入中…</div>
+      <p class="hint">6 人、每輪 3 個構想、每輪約 5 分鐘、共 6 輪。可以延伸、組合或改良前面的想法，先求多元，不急著批評。</p>
+    </header>
+
+    <div class="status">
+      <span>目前第 <span class="big" id="roundNo">1</span> / 6 輪</span>
+      <span id="sheetNo">—</span>
+    </div>
+
+    <!-- 目前手上這張表前幾輪的內容 -->
+    <section class="card" id="prevBox" hidden>
+      <div>
+        <b>前面幾輪的構想</b>
+        <p class="hint">先看一下，再寫你的延伸想法。</p>
+      </div>
+      <div class="prev" id="prev"></div>
+    </section>
+
+    <!-- 本輪填寫區 -->
+    <section class="card">
+      <p class="hint" id="pick">正在為你分配表單…</p>
+      <div class="stack" id="mine" hidden>
+        <label for="i1">構想 1 <small class="code" id="c1"></small><textarea id="i1" data-j="1" placeholder="寫下具體做法"></textarea></label>
+        <label for="i2">構想 2 <small class="code" id="c2"></small><textarea id="i2" data-j="2" placeholder="寫下具體做法"></textarea></label>
+        <label for="i3">構想 3 <small class="code" id="c3"></small><textarea id="i3" data-j="3" placeholder="寫下具體做法"></textarea></label>
+        <div class="save" id="saveState">內容會自動儲存</div>
+      </div>
+    </section>
+
+    <details>
+      <summary>查看全部 6 張表單</summary>
+      <div id="all"></div>
+    </details>
+
+    <details>
+      <summary>主持人設定</summary>
+      <div class="stack">
+        <label for="s_topic">活動主題<textarea id="s_topic" class="short"></textarea></label>
+        <p class="hint">參與者打開頁面就會自動匿名加入（最多 6 人）。每輪結束時按「下一輪」，每張表會自動傳給下一位。換一組人使用前，請先清空。</p>
+        <div class="btns">
+          <button class="btn" id="b_prev" type="button">上一輪</button>
+          <button class="btn primary" id="b_next" type="button">下一輪</button>
+        </div>
+        <button class="btn danger" id="b_reset" type="button">清空所有填寫內容</button>
+      </div>
+    </details>
+
+    <div class="conn" id="conn">連線中…</div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

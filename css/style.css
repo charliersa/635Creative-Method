@@ -1,0 +1,99 @@
+/* 版面：單欄窄表單，從上到下，像手機上的一張紙 */
+
+:root {
+  --bg: #EEF0F3; --paper: #FFFFFF; --ink: #1B2230; --muted: #5D6677; --line: #D3D8E0;
+  --accent: #2446C8; --accent-ink: #FFFFFF; --soft: #E3E8F7; --ok: #1E7A4C; --warn: #B3261E;
+  --f-body: "Noto Sans TC", system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --f-num: "Space Grotesk", "Noto Sans TC", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161E; --paper: #1A202B; --ink: #E6E9EF; --muted: #9AA3B4; --line: #2E3646;
+    --accent: #7D97FF; --accent-ink: #0E1430; --soft: #232B3D; --ok: #5BC98F; --warn: #FF8A80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161E; --paper: #1A202B; --ink: #E6E9EF; --muted: #9AA3B4; --line: #2E3646;
+  --accent: #7D97FF; --accent-ink: #0E1430; --soft: #232B3D; --ok: #5BC98F; --warn: #FF8A80;
+  color-scheme: dark;
+}
+
+/* 基本 */
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  padding: 24px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px));
+}
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+button, input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* 容器 */
+.form { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px; display: flex; flex-direction: column; gap: 12px;
+}
+.stack { display: flex; flex-direction: column; gap: 12px; }
+
+/* 標頭 */
+.head h1 { font-size: 22px; }
+.head .num { font-family: var(--f-num); color: var(--accent); margin-right: 6px; }
+.topic { font-size: 15px; color: var(--muted); }
+.topic b { color: var(--ink); }
+
+/* 輪次狀態列 */
+.status {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  background: var(--soft); border-radius: 8px; padding: 10px 14px; font-weight: 700;
+}
+.status .big { font-family: var(--f-num); font-size: 20px; color: var(--accent); }
+
+/* 表單欄位 */
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 500; font-size: 15px; }
+label small { font-weight: 400; color: var(--muted); font-size: 13px; }
+textarea {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 12px; width: 100%;
+  resize: vertical; min-height: 96px; line-height: 1.5;
+}
+textarea.short { min-height: 64px; }
+.code { font-family: var(--f-num); font-size: 12px; color: var(--muted); font-weight: 400; }
+.hint { font-size: 13px; color: var(--muted); margin: 0; }
+.save { font-size: 13px; color: var(--muted); min-height: 20px; text-align: right; }
+.save.ok { color: var(--ok); }
+.save.err { color: var(--warn); }
+
+/* 按鈕 */
+.btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn {
+  border: 1px solid var(--line); background: var(--paper); border-radius: 8px;
+  padding: 10px 16px; cursor: pointer; font-weight: 500;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.danger { color: var(--warn); }
+.btn.danger.armed { background: var(--warn); border-color: var(--warn); color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+/* 前幾輪與全部表單 */
+.prev { display: flex; flex-direction: column; gap: 10px; }
+.prev-round { border-left: 3px solid var(--line); padding-left: 12px; }
+.sheet .prev-round { margin-top: 6px; }
+.prev-round .who { font-size: 13px; color: var(--muted); }
+.prev-round ol { margin: 4px 0 0; padding-left: 20px; }
+.prev-round li { font-size: 15px; }
+
+details { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; }
+details summary { cursor: pointer; font-weight: 700; }
+details[open] summary { margin-bottom: 12px; }
+.sheet { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+.sheet:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.sheet h3 { margin: 0 0 6px; font-size: 16px; }
+
+/* 連線狀態 */
+.conn { font-size: 12px; color: var(--muted); text-align: center; }
+.conn.err { color: var(--warn); }
